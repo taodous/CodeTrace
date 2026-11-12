@@ -12,6 +12,12 @@ import tomllib
 import urllib.request
 from pathlib import Path
 
+import truststore
+
+# Vérifie les certificats HTTPS avec le magasin du système (Windows, macOS, Linux) au lieu de
+# celui de Python : évite CERTIFICATE_VERIFY_FAILED derrière un proxy ou un antivirus.
+truststore.inject_into_ssl()
+
 ROOT = Path(__file__).resolve().parent.parent
 PAPERS_DIR = ROOT / "papers"
 MANIFEST = PAPERS_DIR / "papers.toml"

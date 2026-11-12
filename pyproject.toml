@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Detecting training data provenance in LLMs for source code"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "truststore>=0.10.5",
+]
 
 [dependency-groups]
 dev = [
