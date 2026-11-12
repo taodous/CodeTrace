@@ -1,0 +1,43 @@
+# Secrets
+.env
+.env.*
+
+# Données (voir data/README.md)
+data/raw/
+data/processed/
+
+# Papiers (droits d'auteur, poids)
+papers/*.pdf
+
+# Sorties brutes volumineuses : on versionne configs, summary.md et tableaux agrégés
+results/**/*.jsonl
+results/**/*.parquet
+results/**/*.log
+
+# Cache API
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# LaTeX
+paper/**/*.aux
+paper/**/*.log
+paper/**/*.out
+paper/**/*.toc
+paper/**/*.bbl
+paper/**/*.blg
+paper/**/*.synctex.gz
+paper/**/*.fdb_latexmk
+paper/**/*.fls
+
+# Local
+CLAUDE.local.md
+.claude/settings.local.json
