@@ -7,7 +7,7 @@ Encadrants : Subhankar Maity, Guilherme Medeiros Machado.
 Le repo n'est qu'un squelette. Rien n'est implémenté :
 - aucun code dans src/ (seulement des `__init__.py` vides), aucun test ;
 - aucun dataset dans data/, aucune expérience dans experiments/, aucun résultat dans results/ ;
-- aucun papier dans papers/, aucune fiche de lecture dans notes/ ;
+- 8 PDF dans papers/ (liste ci-dessous), mais aucun n'est encore lu ni fiché dans notes/ ;
 - docs/model_access.md et les fichiers de notes sont des gabarits vides.
 
 Ne jamais affirmer qu'un fichier, un résultat ou un papier existe sans l'avoir vérifié dans le repo.
@@ -27,14 +27,20 @@ sur la version authentique et sur des versions perturbées du même code ?
 6. Construire un outil interactif de test en temps réel.
 7. Analyser l'influence de l'architecture et des caractéristiques du code.
 
-## Littérature (rien n'est encore lu ni téléchargé)
-Pistes de départ, à récupérer dans papers/ et à ficher avec /new-paper avant de s'en servir :
-- Shi et al. 2024 (ICLR) : Min-K% Prob, benchmark WikiMIA.
-- Zhang et al. 2025 (ICLR) : Min-K%++.
-- Duan et al. 2024 : "Do Membership Inference Attacks Work on Large Language Models?"
-  (biais de distribution temporelle).
-- Un papier de l'équipe encadrante (Maity et al.) sur l'audit d'API LLM via les token probabilities :
-  référence exacte à obtenir auprès des encadrants.
+## Littérature (PDF téléchargés dans papers/, pas encore lus ni fichés)
+Fondations MIA sur LLM :
+- carlini2021-extracting-training-data.pdf : Carlini et al., arXiv 2012.07805 (scores loss, zlib).
+- mattern2023-neighbourhood-comparison.pdf : Mattern et al., arXiv 2305.18462
+  (comparaison avec des voisins perturbés, le plus proche de l'idée CodeTrace).
+- shi2024-min-k-prob.pdf : Shi et al., arXiv 2310.16789 (Min-K% Prob, WikiMIA).
+- zhang2025-min-k-plus-plus.pdf : Zhang et al., arXiv 2404.02936 (Min-K%++).
+- duan2024-do-mias-work.pdf : Duan et al., arXiv 2402.07841 (biais de distribution temporelle).
+Spécifique au code :
+- wan2024-code-completion-mia.pdf : Wan et al., arXiv 2404.14296 (MIA sur modèles de complétion de code).
+- alkaswan2024-memorisation-code.pdf : Al-Kaswan et al., arXiv 2312.11658 (mémorisation dans les LLM de code).
+- jiang2025-advprompt-mia-code.pdf : Jiang et al., arXiv 2511.15107 (MIA code par prompts perturbés).
+Non trouvé : un papier de l'équipe encadrante (Maity et al.) sur l'audit d'API LLM via les
+token probabilities. Référence exacte à obtenir auprès des encadrants.
 Ne pas citer de chiffre ou de conclusion d'un papier tant qu'il n'a pas de fiche dans notes/.
 
 ## Règles méthodologiques
@@ -73,7 +79,9 @@ Ne pas citer de chiffre ou de conclusion d'un papier tant qu'il n'a pas de fiche
 - app/ : outil interactif (Streamlit ou Gradio, à choisir)
 - docs/ : documentation technique (model_access.md)
 - notes/ : journal, décisions, related work, fiches de lecture
-- papers/ : PDF des papiers (hors git, voir .gitignore)
+- papers/ : PDF des papiers (hors git). La liste fait foi dans papers/papers.toml ;
+  `uv run python scripts/download_papers.py` les télécharge.
+- scripts/ : utilitaires (téléchargement des papiers...)
 - paper/ : rapport LaTeX
 
 ## Conventions de code

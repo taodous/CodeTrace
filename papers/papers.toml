@@ -1,0 +1,51 @@
+# Papiers de référence de CodeTrace.
+# Les PDF ne sont pas versionnés (licences, poids) : `uv run python scripts/download_papers.py`
+# Pour ajouter un papier : ajouter un bloc [[paper]] puis relancer le script.
+
+[[paper]]
+file = "carlini2021-extracting-training-data.pdf"
+arxiv = "2012.07805"
+title = "Extracting Training Data from Large Language Models"
+topic = "fondations MIA"
+
+[[paper]]
+file = "mattern2023-neighbourhood-comparison.pdf"
+arxiv = "2305.18462"
+title = "Membership Inference Attacks against Language Models via Neighbourhood Comparison"
+topic = "fondations MIA"
+
+[[paper]]
+file = "shi2024-min-k-prob.pdf"
+arxiv = "2310.16789"
+title = "Detecting Pretraining Data from Large Language Models"
+topic = "fondations MIA"
+
+[[paper]]
+file = "zhang2025-min-k-plus-plus.pdf"
+arxiv = "2404.02936"
+title = "Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models"
+topic = "fondations MIA"
+
+[[paper]]
+file = "duan2024-do-mias-work.pdf"
+arxiv = "2402.07841"
+title = "Do Membership Inference Attacks Work on Large Language Models?"
+topic = "fondations MIA"
+
+[[paper]]
+file = "wan2024-code-completion-mia.pdf"
+arxiv = "2404.14296"
+title = "Does Your Neural Code Completion Model Use My Code? A Membership Inference Approach"
+topic = "code"
+
+[[paper]]
+file = "alkaswan2024-memorisation-code.pdf"
+arxiv = "2312.11658"
+title = "Traces of Memorisation in Large Language Models for Code"
+topic = "code"
+
+[[paper]]
+file = "jiang2025-advprompt-mia-code.pdf"
+arxiv = "2511.15107"
+title = "Effective Code Membership Inference for Code Completion Models via Adversarial Prompts"
+topic = "code"
