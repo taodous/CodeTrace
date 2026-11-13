@@ -27,16 +27,19 @@ __pycache__/
 dist/
 build/
 
-# LaTeX
-paper/**/*.aux
-paper/**/*.log
-paper/**/*.out
-paper/**/*.toc
-paper/**/*.bbl
-paper/**/*.blg
-paper/**/*.synctex.gz
-paper/**/*.fdb_latexmk
-paper/**/*.fls
+# LaTeX : artefacts de compilation du rapport (main.pdf et diff-*.pdf sont versionnés)
+report/**/*.aux
+report/**/*.log
+report/**/*.out
+report/**/*.toc
+report/**/*.bbl
+report/**/*.bcf
+report/**/*.blg
+report/**/*.run.xml
+report/**/*.synctex.gz
+report/**/*.fdb_latexmk
+report/**/*.fls
+report/**/diff-*.tex
 
 # Local
 CLAUDE.local.md

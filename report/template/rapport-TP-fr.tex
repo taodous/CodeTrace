@@ -1,0 +1,156 @@
+% Formatage général
+	\documentclass[a4paper,11pt]{article}
+	\usepackage[T1]{fontenc} % Encodage des caractères spéciaux
+	\usepackage{helvet} % Police équivalent Arial
+	\usepackage[french]{babel} % Localisation en français
+	\frenchbsetup{StandardLists=true} % Pour dire à babel de garder le formatage standard (anglais) des listes à puce
+	\usepackage{csquotes} % Pour remplacer automatiquement les guillemets par des guillemets typographique
+	\MakeOuterQuote{"} % Le caractère utilisé pour rentrer les guillemets dans le code est le "
+	
+% Dimensions
+	\usepackage[margin=2cm]{geometry} % Marges
+	\setlength{\parindent}{0pt} % Largeur de l'alinéa
+
+% Couleurs
+	\usepackage{xcolor} % Permet de passer un texte en couleur avec la commande \textcolor{color}{text}
+	\definecolor{darkpowderblue}{rgb}{0.0, 0.2, 0.6} % Couleur perso bleue foncée appliquée aux liens URL
+	\definecolor{gamboge}{rgb}{0.89, 0.61, 0.06} % Couleur perso orange appliquée aux subsubsections
+	\definecolor{ece}{RGB}{0, 122, 123} % Couleur ECE appliquée aux autres titres
+	
+% Formatage des titres
+	\usepackage{titlesec} % Package utilisé pour formater les titres
+	\setcounter{secnumdepth}{3} % Numéortation jusqu'au niveau subsubsection
+	
+	\titleformat{\section} % Formatage des sections
+		{\fontsize{18}{18}\bfseries\color{ece}} % Titre en 18 pt, gras, couleur ECE
+		{\Roman{section}.} % Numérotation romaine majuscule suivie d'un point
+		{1ex} % Un espace entre le numéro et le titre
+		{}
+	
+	\titleformat{\subsection} % Formatage des sous-sections
+		{\fontsize{16}{16}\bfseries\color{ece}} % Titre en 16 pt, gras, couleur ECE
+		{\Alph{subsection}.} % Numérotation en lettre majuscule suivie d'un point
+		{1ex} % Un espace entre le numéro et le titre
+		{}
+	
+	\titleformat{\subsubsection} % Formatage des sous-sous-sections
+		{\fontsize{15}{15}\bfseries\color{gamboge}} % Titre en 15 pt, gras, couleur orange
+		{(\alph{subsubsection})} % Numérotation en lettre minuscule entourée de parenthèses
+		{1ex} % Un espace entre le numéro et le titre
+		{}
+	
+% En-tête et pied de page
+	\usepackage{fancyhdr} % Package utilisé pour personnaliser facilement en-tête et pied-de-page
+	\renewcommand{\headrulewidth}{0pt} % Épaisseur de la ligne de séparation entre en-tête et corps du rapport
+	
+	\fancypagestyle{main}{ % En-tête et pied de page pour toutes les autres pages
+		\fancyhead[L]{\includegraphics[width=2cm]{images/ece.png}} % En haut à gauche, le logo ECE
+		\fancyhead[R]{ING\colorbox{yellow}{[X]} Groupe\colorbox{yellow}{[X]}} % En haut à droite, l'année et le groupe
+		\fancyfoot[C]{\thepage} % En bas au centre, le numéro de page
+	}
+	\pagestyle{main}
+		
+% Page de titre
+	\newcommand{\HRule}[1]{\rule{\linewidth}{#1}} % Ligne de séparation horizontale d'une épaisseur donnée
+
+% Figures
+	\usepackage{graphicx} % Permet l'ajout d'images en spécifiant la taille
+	\usepackage{subcaption} % Package utilisé pour avoir des sous-figures avec chacune une légende
+	\usepackage[labelfont=bf]{caption} % "Figure" et numéro en gras
+	
+% Liens
+	\usepackage[colorlinks=true,linkcolor=black,urlcolor=darkpowderblue]{hyperref}
+
+\begin{document}
+	
+	\title{
+		\begin{figure}[htb]
+			\begin{minipage}[t]{.45\textwidth}
+				\centering
+				\includegraphics[width=6cm]{images/ece.png}
+			\end{minipage}
+			\hfill
+			\begin{minipage}[t]{.45\textwidth}
+				\centering
+				\raggedleft\vspace{-12mm}\Large{\textbf{ING\colorbox{yellow}{[X]}}\\ Groupe \colorbox{yellow}{[X]}}
+			\end{minipage}  
+		\end{figure}
+		\vspace{2cm}
+		\HRule{1.5pt} \\ [0.5cm]
+		\LARGE \textbf{\Large{RAPPORT DE TP}\\ [5mm]
+		\huge{\textcolor{ece}{TP \colorbox{yellow}{[X]} : \colorbox{yellow}{[Nom du TP]}}}}
+		\HRule{1.5pt} \\ [3mm]
+		
+		\normalsize
+		\vspace{1cm}
+		\begin{figure}[!h]
+			\centering
+			\includegraphics[width=\textwidth]{images/elec.png}
+		\end{figure}
+		\vfill
+	}
+	
+	\author{
+		\colorbox{yellow}{André-Marie AMPÈRE} \and \colorbox{yellow}{Alessandro VOLTA}
+	}
+	
+	\date{
+		Nous attestons que ce travail est original,\\
+		qu’il est le fruit d’un travail commun au binôme et qu’il a été rédigé de manière autonome.\\ [2mm]
+		\textbf{\colorbox{yellow}{Ville, le JJ/MM/AAAA}}
+	}
+	
+	\maketitle % Page de titre
+	
+	\newpage		
+	\section{Nom de la partie}
+		\subsection{Nom de la section}
+	
+			\textbf{\textcolor{ece}{T1.}} Réponse à la question T1.
+			
+			\begin{figure}[!h]
+				\centering
+				\includegraphics[width=5cm]{images/ece.png}
+				\caption{Légende de la Figure}
+			\end{figure}
+				
+			\vspace{3mm}
+			\textbf{\textcolor{ece}{E1.}} Réponse à la question E1.
+			
+			\begin{figure}[!h]
+				\centering
+				\includegraphics[width=5cm]{images/ece.png}
+				\caption{Légende de la Figure}
+			\end{figure}
+		
+	\section{Nom de la partie}
+		\subsection{Nom de la section}
+	
+			\textcolor{gray}{Petits rappels pour une grande réussite :}
+			
+			\vspace{2mm}
+			
+			\textcolor{gray}{Pour chaque question, dire :}
+			
+			\begin{enumerate}
+				\item \textcolor{gray}{Formulation du \textbf{problème} : ce que l’on cherche à faire ;}
+				\item \textcolor{gray}{Présentation de la \textbf{solution technique} : comment on le fait (bien souvent, algorigramme commenté, ou diagramme de branchement) ;}
+				\item \textcolor{gray}{Présentation et description des \textbf{résultats} : Ce que l’on obtient ;}
+				\item \textcolor{gray}{\textbf{Validation} des résultats et \textbf{Réponses à la question} (lien entre 1. et 3.) avec un avis critique.}
+			\end{enumerate}
+			
+			\vspace{6mm}
+			
+			\begin{itemize}
+				\item \textcolor{gray}{Toujours mentionner les renvois aux Figures ("Les résultats de la simulation sont présentés sur la Figure 2.1. On y voit…").}
+				\item \textcolor{gray}{Pas de code dans les rapports, uniquement des renvois à des annexes si cela est pertinent.}
+				\item \textcolor{gray}{Pas de vidéo. Elles ne seront pas regardées et donc pas notées.}
+				\item \textcolor{gray}{Lire scrupuleusement l’énoncé. Une mesure à l’oscilloscope n’est pas une capture d’écran du traceur série.}
+				\item \textcolor{gray}{Exporter au format .PDF le rapport.}
+			\end{itemize}
+	
+	\newpage
+	\section{Annexes}
+		Documents volumineux, éventuels codes (\textbf{\textcolor{red}{pas de code dans le rapport}}).
+
+\end{document}

@@ -8,7 +8,11 @@ Le repo n'est qu'un squelette. Rien n'est implémenté :
 - aucun code dans src/ (seulement des `__init__.py` vides), aucun test ;
 - aucun dataset dans data/, aucune expérience dans experiments/, aucun résultat dans results/ ;
 - 8 PDF dans papers/ (liste ci-dessous), mais aucun n'est encore lu ni fiché dans notes/ ;
-- docs/model_access.md et les fichiers de notes sont des gabarits vides.
+- docs/model_access.md et les fichiers de notes sont des gabarits vides, sauf notes/etat_de_l_art.md
+  (synthèse courte de la littérature, rédigée à partir des résumés).
+- Rapport : skill /build-report + scripts/build_report.py (testé dans tests/test_build_report.py).
+  Template ECE dans report/template/. Aucune version (report/V1/) encore générée.
+  Aucune distribution LaTeX installée sur la machine pour l'instant.
 
 Ne jamais affirmer qu'un fichier, un résultat ou un papier existe sans l'avoir vérifié dans le repo.
 Mettre à jour cette section quand une brique devient réelle.
@@ -82,7 +86,9 @@ Ne pas citer de chiffre ou de conclusion d'un papier tant qu'il n'a pas de fiche
 - papers/ : PDF des papiers (hors git). La liste fait foi dans papers/papers.toml ;
   `uv run python scripts/download_papers.py` les télécharge.
 - scripts/ : utilitaires (téléchargement des papiers...)
-- paper/ : rapport LaTeX
+- report/ : rapport LaTeX. report/template/ = template ECE d'origine (jamais modifiée),
+  report/report.toml = métadonnées (auteurs, encadrants), report/V1/, V2/... = versions
+  successives générées par /build-report (ne jamais modifier une version déjà livrée).
 
 ## Conventions de code
 - Python 3.11+, uv pour l'environnement (pyproject.toml), ruff + pytest.
@@ -95,4 +101,6 @@ Ne pas citer de chiffre ou de conclusion d'un papier tant qu'il n'a pas de fiche
 - Pour toute nouvelle expérience : passer d'abord en plan mode, valider le protocole, puis coder.
 - Mettre à jour notes/journal.md à la fin de chaque session (/session-end).
 - Nouveau papier : /new-paper <chemin PDF ou lien arXiv>.
+- Nouvelle version du rapport : /build-report (option --dry-run pour voir le plan d'intégration).
+  Commiter les notes et résultats avant : le delta se calcule depuis le commit de la version précédente.
 - Style d'écriture : pas de tirets cadratins dans les textes rédigés.

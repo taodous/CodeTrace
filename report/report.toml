@@ -1,0 +1,13 @@
+# Métadonnées du rapport, injectées dans la page de titre et les métadonnées PDF
+# par `scripts/build_report.py new`. Modifier ici, jamais directement dans report/V*/titlepage.tex.
+
+titre = "CodeTrace"
+sous_titre = "Détection de la provenance des données d'entraînement des LLM pour le code"
+type_document = "Rapport de recherche"
+annee = "2026-2027"
+equipe = "Équipe Data \\& IA"
+ville = "Paris"
+
+# Liste des auteurs (Prénom NOM). "À compléter" déclenche un avertissement de `check`.
+auteurs = ["À compléter"]
+encadrants = ["Subhankar Maity", "Guilherme Medeiros Machado"]

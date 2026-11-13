@@ -1,0 +1,88 @@
+% =====================================================================
+% Ajouts "rapport de recherche" au préambule de la template ECE.
+% Chargé par main.tex APRÈS le préambule ECE (donc après babel, csquotes, hyperref).
+% Ne pas modifier dans report/V*/ : la source est
+% .claude/skills/build-report/assets/preamble-recherche.tex
+% =====================================================================
+
+% Typographie et maths
+	\usepackage{microtype}
+	\usepackage{amsmath,amssymb}
+	\usepackage[locale=FR]{siunitx} % \num{0.62} -> 0,62 ; \SI, \qty
+	\sisetup{group-minimum-digits=4, separate-uncertainty=true}
+
+% Tableaux
+	\usepackage{booktabs} % \toprule \midrule \bottomrule, jamais de traits verticaux
+	\usepackage{multirow}
+	\usepackage{array}
+	\usepackage{tabularx}
+
+% Courts extraits de code (uniquement dans des figures, exemples de perturbation)
+	\usepackage{listings}
+	\lstset{
+		basicstyle=\ttfamily\small,
+		columns=fullflexible,
+		keepspaces=true,
+		breaklines=true,
+		frame=single,
+		rulecolor=\color{gray!50},
+		numbers=none,
+		showstringspaces=false,
+		extendedchars=true,
+		inputencoding=utf8,
+		literate={é}{{\'e}}1 {è}{{\`e}}1 {à}{{\`a}}1 {ç}{{\c{c}}}1 {ê}{{\^e}}1 {ù}{{\`u}}1
+	}
+
+% Bibliographie (biber)
+	\usepackage[backend=biber, style=numeric-comp, sorting=nyt, maxbibnames=6, giveninits=true]{biblatex}
+	\addbibresource{refs.bib}
+
+% Références croisées : \cref{fig:x} -> "figure 3". Doit venir après hyperref.
+	\usepackage[french,noabbrev]{cleveref}
+
+% Numérotation : les titres affichent \thesection, donc les renvois (\cref) et les titres
+% donnent le même numéro (romain pour les parties, lettre pour les annexes).
+	\renewcommand{\thesection}{\Roman{section}}
+	\renewcommand{\thesubsection}{\thesection.\Alph{subsection}}
+	\renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+	\titleformat{\section}{\fontsize{18}{18}\bfseries\color{ece}}{\thesection.}{1ex}{}
+	\titleformat{\subsection}{\fontsize{16}{16}\bfseries\color{ece}}{\Alph{subsection}.}{1ex}{}
+	\titleformat{\subsubsection}{\fontsize{15}{15}\bfseries\color{gamboge}}{(\alph{subsubsection})}{1ex}{}
+	\usepackage{appendix}
+	\makeatletter
+	\g@addto@macro\appendix{%
+		\renewcommand{\thesection}{\Alph{section}}%
+		\titleformat{\section}{\fontsize{18}{18}\bfseries\color{ece}}{Annexe \thesection.}{1ex}{}%
+	}
+	\makeatother
+
+% Table des matières
+	\setcounter{tocdepth}{2}
+
+% Marqueurs de travail (comptés par `build_report.py check`)
+	% \afaire{...} : section ou paragraphe prévu mais sans matière réelle dans le repo.
+	\newcommand{\afaire}[1]{%
+		\par\vspace{2mm}\noindent
+		\fcolorbox{gamboge}{gamboge!10}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+			\textbf{\textcolor{gamboge}{À venir.}} #1}}%
+		\par\vspace{2mm}}
+	% \averifier{...} : affirmation dont la source n'est pas encore vérifiée (ex. chiffre lu sur le web).
+	\newcommand{\averifier}[1]{#1\textsuperscript{\textcolor{red}{[à vérifier]}}}
+
+% Résultats chiffrés : jamais tapés à la main.
+	% \res{run}{cle} affiche la valeur générée par `build_report.py export-results`
+	% dans generated/*.tex. Une clé inconnue s'affiche ?? en rouge et lève un warning.
+	\makeatletter
+	\newcommand{\res}[2]{%
+		\ifcsname res@#1@#2\endcsname
+			\csname res@#1@#2\endcsname
+		\else
+			\textbf{\textcolor{red}{??}}%
+			\PackageWarning{codetrace}{Resultat inconnu: #1/#2}%
+		\fi}
+	\newcommand{\defres}[3]{\expandafter\def\csname res@#1@#2\endcsname{#3}}
+	\makeatother
+	\IfFileExists{generated/resultats.tex}{\input{generated/resultats.tex}}{}
+
+% Figures et tableaux : légende au-dessus des tableaux, en dessous des figures
+	\captionsetup[table]{position=top}
