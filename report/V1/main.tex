@@ -1,0 +1,102 @@
+% Fichier GÉNÉRÉ par scripts/build_report.py depuis report/template/rapport-TP-fr.tex.
+% Ne pas éditer : modifier sections/, report/report.toml ou la template, puis `check`.
+% Formatage général
+	\documentclass[a4paper,11pt]{article}
+	\usepackage[T1]{fontenc} % Encodage des caractères spéciaux
+	\usepackage{helvet} % Police équivalent Arial
+	\usepackage[french]{babel} % Localisation en français
+	\frenchbsetup{StandardLists=true} % Pour dire à babel de garder le formatage standard (anglais) des listes à puce
+	\usepackage{csquotes} % Pour remplacer automatiquement les guillemets par des guillemets typographique
+	\MakeOuterQuote{"} % Le caractère utilisé pour rentrer les guillemets dans le code est le "
+	
+% Dimensions
+	\usepackage[margin=2cm]{geometry} % Marges
+	\setlength{\parindent}{0pt} % Largeur de l'alinéa
+
+% Couleurs
+	\usepackage{xcolor} % Permet de passer un texte en couleur avec la commande \textcolor{color}{text}
+	\definecolor{darkpowderblue}{rgb}{0.0, 0.2, 0.6} % Couleur perso bleue foncée appliquée aux liens URL
+	\definecolor{gamboge}{rgb}{0.89, 0.61, 0.06} % Couleur perso orange appliquée aux subsubsections
+	\definecolor{ece}{RGB}{0, 122, 123} % Couleur ECE appliquée aux autres titres
+	
+% Formatage des titres
+	\usepackage{titlesec} % Package utilisé pour formater les titres
+	\setcounter{secnumdepth}{3} % Numéortation jusqu'au niveau subsubsection
+	
+	\titleformat{\section} % Formatage des sections
+		{\fontsize{18}{18}\bfseries\color{ece}} % Titre en 18 pt, gras, couleur ECE
+		{\Roman{section}.} % Numérotation romaine majuscule suivie d'un point
+		{1ex} % Un espace entre le numéro et le titre
+		{}
+	
+	\titleformat{\subsection} % Formatage des sous-sections
+		{\fontsize{16}{16}\bfseries\color{ece}} % Titre en 16 pt, gras, couleur ECE
+		{\Alph{subsection}.} % Numérotation en lettre majuscule suivie d'un point
+		{1ex} % Un espace entre le numéro et le titre
+		{}
+	
+	\titleformat{\subsubsection} % Formatage des sous-sous-sections
+		{\fontsize{15}{15}\bfseries\color{gamboge}} % Titre en 15 pt, gras, couleur orange
+		{(\alph{subsubsection})} % Numérotation en lettre minuscule entourée de parenthèses
+		{1ex} % Un espace entre le numéro et le titre
+		{}
+	
+% En-tête et pied de page
+	\usepackage{fancyhdr} % Package utilisé pour personnaliser facilement en-tête et pied-de-page
+	\renewcommand{\headrulewidth}{0pt} % Épaisseur de la ligne de séparation entre en-tête et corps du rapport
+	
+	\fancypagestyle{main}{ % En-tête et pied de page pour toutes les autres pages
+		\fancyhead[L]{\includegraphics[width=2cm]{images/ece.png}} % En haut à gauche, le logo ECE
+		\fancyhead[R]{\textcolor{ece}{CodeTrace} \textbullet{} V1}
+		\fancyfoot[C]{\thepage} % En bas au centre, le numéro de page
+	}
+	\pagestyle{main}
+		
+% Page de titre
+	\newcommand{\HRule}[1]{\rule{\linewidth}{#1}} % Ligne de séparation horizontale d'une épaisseur donnée
+
+% Figures
+	\usepackage{graphicx} % Permet l'ajout d'images en spécifiant la taille
+	\usepackage{subcaption} % Package utilisé pour avoir des sous-figures avec chacune une légende
+	\usepackage[labelfont=bf]{caption} % "Figure" et numéro en gras
+	
+% Liens
+	\usepackage[colorlinks=true,linkcolor=black,urlcolor=darkpowderblue]{hyperref}
+
+% ---------------------------------------------------------------------
+% Ajouts recherche (build_report.py).
+% Le préambule ci-dessus est celui de la template ECE.
+\input{preamble-recherche}
+\hypersetup{pdftitle={CodeTrace : Détection de la provenance des données d'entraînement des LLM pour le code}, pdfauthor={À compléter}, pdflang={fr}}
+
+\begin{document}
+
+\input{titlepage}
+
+\input{sections/00-resume}
+
+\tableofcontents
+\newpage
+
+\input{sections/01-introduction}
+\input{sections/02-etat-de-l-art}
+\input{sections/03-cadre}
+\input{sections/04-donnees}
+\input{sections/05-methodes}
+\input{sections/06-protocole}
+\input{sections/07-resultats}
+\input{sections/08-discussion}
+\input{sections/09-outil}
+\input{sections/10-conclusion}
+
+\newpage
+\printbibliography[heading=bibintoc, title={Références}]
+
+\newpage
+\appendix
+\input{sections/annexes/A-decisions}
+\input{sections/annexes/B-reproductibilite}
+\input{sections/annexes/C-historique}
+\input{sections/annexes/D-exemples-perturbations}
+
+\end{document}

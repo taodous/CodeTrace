@@ -49,3 +49,377 @@ file = "jiang2025-advprompt-mia-code.pdf"
 arxiv = "2511.15107"
 title = "Effective Code Membership Inference for Code Completion Models via Adversarial Prompts"
 topic = "code"
+
+# --- Ajoutés le 2026-11-14 depuis docs/etat-de-lart/sources.md (topic = questions où la source est principale) ---
+
+[[paper]]
+file = "sun2022-coprotector.pdf"
+arxiv = "2110.12925"
+title = "CoProtector: Protect Open-Source Code against Unauthorized Training Usage with Data Poisoning"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "sun2023-codemark.pdf"
+arxiv = "2308.14401"
+title = "CodeMark: Imperceptible Watermarking for Code Datasets against Neural Code Completion Models"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "xiao2025-decoma.pdf"
+arxiv = "2504.07002"
+title = "DeCoMa: Detecting and Purifying Code Dataset Watermarks through Dual Channel Code Abstraction"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "chen2026-ducodemark.pdf"
+arxiv = "2604.10611"
+title = "DuCodeMark: Dual-Purpose Code Dataset Watermarking via Style-Aware Watermark-Poison Design"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "qu2025-repomark.pdf"
+arxiv = "2508.21432"
+title = "RepoMark: A Data-Usage Auditing Framework for Code Large Language Models"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "meeus2024-copyright-traps.pdf"
+arxiv = "2402.09363"
+title = "Copyright Traps for Large Language Models"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "wei2024-data-watermarks.pdf"
+arxiv = "2402.10892"
+title = "Proving membership in LLM pretraining data via data watermarks"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "rastogi2025-stamp.pdf"
+arxiv = "2504.13416"
+title = "STAMP Your Content: Proving Dataset Membership via Watermarked Rephrasings"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "li2025-provenance-unicode.pdf"
+arxiv = "2510.09655"
+title = "Data Provenance Auditing of Fine-Tuned Large Language Models with a Text-Preserving Technique"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "weinberg2026-sigil.pdf"
+arxiv = "2606.06502"
+title = "Subtle Injection for Ground-truth Inference of LLM Training Data"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "du2025-sok-copyright-auditing.pdf"
+arxiv = "2410.16618"
+title = "SoK: Dataset Copyright Auditing in Machine Learning Systems"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "liu2026-implicit-identity.pdf"
+arxiv = "2605.29245"
+title = "Implicit Identity Technologies for LLMs: Fingerprinting and Watermarking across Datasets, Models, and Generated Content"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "sander2024-radioactive.pdf"
+arxiv = "2402.14904"
+title = "Watermarking Makes Language Models Radioactive"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "jovanovic2025-ward.pdf"
+arxiv = "2410.03537"
+title = "Ward: Provable RAG Dataset Inference via LLM Watermarks"
+topic = "etat de l'art Q1"
+
+[[paper]]
+file = "meeus2025-sok-rushing-nowhere.pdf"
+arxiv = "2406.17975"
+title = "SoK: Membership Inference Attacks on LLMs are Rushing Nowhere (and How to Fix It)"
+topic = "etat de l'art Q2+Q3"
+
+[[paper]]
+file = "maini2024-dataset-inference.pdf"
+arxiv = "2406.06443"
+title = "LLM Dataset Inference: Did you train on my dataset?"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "tong2026-pretraining-data-exposure.pdf"
+arxiv = "2605.26133"
+title = "Pretraining Data Exposure in Large Language Models: A Survey of Membership Inference, Data Contamination, and Security Implications"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "das2024-blind-baselines.pdf"
+arxiv = "2406.16201"
+title = "Blind Baselines Beat Membership Inference Attacks for Foundation Models"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "zhang2025-mia-cannot-prove.pdf"
+arxiv = "2409.19798"
+title = "Membership Inference Attacks Cannot Prove that a Model Was Trained On Your Data"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "hayes2025-limits-strong-mia.pdf"
+arxiv = "2505.18773"
+title = "Exploring the limits of strong membership inference attacks on large language models"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "wang2026-checkmiabench.pdf"
+arxiv = "2606.17464"
+title = "CheckMIABench: Firm Foundations For Membership Inference Attacks on Language Models"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "shi2026-olmo-detect.pdf"
+arxiv = "2610.02986"
+title = "OLMo-Detect: A Multi-Stage, Confounder-Controlled Benchmark for Membership Inference on Large Language Models"
+topic = "etat de l'art Q2+Q3"
+
+[[paper]]
+file = "kim2026-em-mia.pdf"
+arxiv = "2410.07582"
+title = "Detecting Training Data of Large Language Models via Expectation Maximization"
+topic = "etat de l'art Q2+Q3"
+
+[[paper]]
+file = "puerto2025-scaling-up-mia.pdf"
+arxiv = "2411.00154"
+title = "Scaling Up Membership Inference: When and How Attacks Succeed on Large Language Models"
+topic = "etat de l'art Q2+Q3"
+
+[[paper]]
+file = "zhang2025-fsd.pdf"
+arxiv = "2410.10880"
+title = "Fine-tuning can Help Detect Pretraining Data from Large Language Models"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "zhang2024-dcpdd.pdf"
+arxiv = "2409.14781"
+title = "Pretraining Data Detection for Large Language Models: A Divergence-based Calibration Method"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "xie2024-recall.pdf"
+arxiv = "2406.15968"
+title = "ReCaLL: Membership Inference via Relative Conditional Log-Likelihoods"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "li2025-ai-coders-snitches.pdf"
+arxiv = "2507.17389"
+title = "Are AI Coders Snitches? An Empirical Study of Pretraining Data Detection on Code Large Language Models"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "li2026-synprune.pdf"
+arxiv = "2511.07033"
+title = "Uncovering Pretraining Code in LLMs: A Syntax-Aware Attribution Approach"
+topic = "etat de l'art Q2+Q3"
+
+[[paper]]
+file = "koohestani2026-ast-pac.pdf"
+arxiv = "2602.13240"
+title = "AST-PAC: AST-guided Membership Inference for Code"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "yang2024-gotcha.pdf"
+arxiv = "2310.01166"
+title = "Gotcha! This Model Uses My Code! Evaluating Membership Leakage Risks in Code Models"
+topic = "etat de l'art Q2+Q3"
+
+[[paper]]
+file = "majdinasab2024-trawic.pdf"
+arxiv = "2402.09299"
+title = "Trained Without My Consent: Detecting Code Inclusion In Language Models Trained on Code"
+topic = "etat de l'art Q2+Q3"
+
+[[paper]]
+file = "riddell2024-code-contamination.pdf"
+arxiv = "2403.04811"
+title = "Quantifying Contamination in Evaluating Code Generation Capabilities of Language Models"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "dong2024-cdd.pdf"
+arxiv = "2402.15938"
+title = "Generalization or Memorization: Data Contamination and Trustworthy Evaluation for Large Language Models"
+topic = "etat de l'art Q2+Q3"
+
+[[paper]]
+file = "hallinan2025-ngram-coverage.pdf"
+arxiv = "2508.09603"
+title = "The Surprising Effectiveness of Membership Inference with Simple N-Gram Coverage"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "kaneko2024-samia.pdf"
+arxiv = "2404.11262"
+title = "Sampling-based Pseudo-Likelihood for Membership Inference Attacks"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "he2025-petal.pdf"
+arxiv = "2502.18943"
+title = "Towards Label-Only Membership Inference Attack against Pre-trained Large Language Models"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "yi2026-simmia-wild.pdf"
+arxiv = "2601.11314"
+title = "Membership Inference on LLMs in the Wild"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "zhou2025-blackbox-dataset-inference.pdf"
+arxiv = "2507.03619"
+title = "Blackbox Dataset Inference for LLM"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "duarte2024-de-cop.pdf"
+arxiv = "2402.09910"
+title = "DE-COP: Detecting Copyrighted Content in Language Models Training Data"
+topic = "etat de l'art Q2"
+
+[[paper]]
+file = "golchin2024-time-travel.pdf"
+arxiv = "2308.08493"
+title = "Time Travel in LLMs: Tracing Data Contamination in Large Language Models"
+topic = "etat de l'art Q2+Q3"
+
+[[paper]]
+file = "maity2026-code-provenance.pdf"
+arxiv = "2611.09177"
+title = "Analyzing Code Provenance in LLMs for Programming Education"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "baggio2026-rag-algorithmic.pdf"
+arxiv = "2611.09791"
+title = "Assessing the Impact of Retrieval-Augmented Generation on Algorithmic Problem-Solving"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "wu2025-survey-mia-large-models.pdf"
+arxiv = "2503.19338"
+title = "Membership Inference Attacks on Large-Scale Models: A Survey"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "fu2025-contamination-assumptions.pdf"
+arxiv = "2410.18966"
+title = "Does Data Contamination Detection Work (Well) for LLMs? A Survey and Evaluation on Detection Assumptions"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "satvaty2024-undesirable-memorization.pdf"
+arxiv = "2410.02650"
+title = "Undesirable Memorization in Large Language Models: A Survey"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "ravaut2024-contamination-survey.pdf"
+arxiv = "2404.00699"
+title = "A Comprehensive Survey of Contamination Detection Methods in Large Language Models"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "xu2024-bdc-survey.pdf"
+arxiv = "2406.04244"
+title = "Benchmark Data Contamination of Large Language Models: A Survey"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "carlini2022-quantifying-memorization.pdf"
+arxiv = "2202.07646"
+title = "Quantifying Memorization Across Neural Language Models"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "kandpal2022-dedup-privacy.pdf"
+arxiv = "2202.06539"
+title = "Deduplicating Training Data Mitigates Privacy Risks in Language Models"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "biderman2023-emergent-memorization.pdf"
+arxiv = "2304.11158"
+title = "Emergent and Predictable Memorization in Large Language Models"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "yang2024-unveiling-memorization-code.pdf"
+arxiv = "2308.09932"
+title = "Unveiling Memorization in Code Models"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "pappu2024-memorization-rlhf-code.pdf"
+arxiv = "2406.11715"
+title = "Measuring memorization in RLHF for code completion"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "niu2023-codexleaks.pdf"
+url = "https://www.usenix.org/system/files/usenixsecurity23-niu.pdf"
+title = "CodexLeaks: Privacy Leaks from Code Generation Language Models in GitHub Copilot"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "yang2025-equivalent-transformations-mia.pdf"
+arxiv = "2512.15468"
+title = "How Do Semantically Equivalent Code Transformations Impact Membership Inference on LLMs for Code?"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "yang2023-rephrased-samples.pdf"
+arxiv = "2311.04850"
+title = "Rethinking Benchmark and Contamination for Language Models with Rephrased Samples"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "matton2024-leakage-code-eval.pdf"
+arxiv = "2407.07565"
+title = "On Leakage of Code Generation Evaluation Datasets"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "zhou2025-lessleak-bench.pdf"
+arxiv = "2502.06215"
+title = "LessLeak-Bench: A First Investigation of Data Leakage in LLMs Across 83 Software Engineering Benchmarks"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "jain2024-livecodebench.pdf"
+arxiv = "2403.07974"
+title = "LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "oren2023-proving-contamination.pdf"
+arxiv = "2310.17623"
+title = "Proving Test Set Contamination in Black Box Language Models"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "chauvin2026-logprob-tracking.pdf"
+arxiv = "2512.03816"
+title = "Log Probability Tracking of LLM APIs"
+topic = "etat de l'art Q3"
+
+[[paper]]
+file = "gao2025-model-equality-testing.pdf"
+arxiv = "2410.20247"
+title = "Model Equality Testing: Which Model Is This API Serving?"
+topic = "etat de l'art Q3"

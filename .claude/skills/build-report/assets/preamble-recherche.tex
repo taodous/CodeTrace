@@ -39,6 +39,15 @@
 
 % Références croisées : \cref{fig:x} -> "figure 3". Doit venir après hyperref.
 	\usepackage[french,noabbrev]{cleveref}
+	% babel french rend « : » actif : les labels sec:x cassent \cref (\csname r@sec:x@cref).
+	% On neutralise les caractères actifs dans l'argument, comme babel le fait pour \ref (safe=ref).
+	\makeatletter
+	\AtBeginDocument{%
+		\let\ct@cref\cref \let\ct@Cref\Cref
+		\renewcommand{\cref}[1]{\begingroup\@safe@activestrue\edef\x{\endgroup\noexpand\ct@cref{#1}}\x}%
+		\renewcommand{\Cref}[1]{\begingroup\@safe@activestrue\edef\x{\endgroup\noexpand\ct@Cref{#1}}\x}%
+	}
+	\makeatother
 
 % Numérotation : les titres affichent \thesection, donc les renvois (\cref) et les titres
 % donnent le même numéro (romain pour les parties, lettre pour les annexes).
@@ -58,6 +67,11 @@
 
 % Table des matières
 	\setcounter{tocdepth}{2}
+	% Numéros romains (VIII, VIII.B) : élargir les cases de numéro pour éviter les overfull.
+	\usepackage[titles]{tocloft}
+	\setlength{\cftsecnumwidth}{2.6em}
+	\setlength{\cftsubsecindent}{2.6em}
+	\setlength{\cftsubsecnumwidth}{3.4em}
 
 % Marqueurs de travail (comptés par `build_report.py check`)
 	% \afaire{...} : section ou paragraphe prévu mais sans matière réelle dans le repo.

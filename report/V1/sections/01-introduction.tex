@@ -1,0 +1,31 @@
+% Sources : CLAUDE.md (question de recherche, objectifs), notes/journal.md, notes/etat_de_l_art.md (motivations).
+\section{Introduction}\label{sec:introduction}
+	\subsection{Contexte et motivations}\label{sec:intro-contexte}
+		Les grands modèles de langage (\emph{large language models}, LLM) sont entraînés sur des corpus qui contiennent une grande quantité de code source public. La composition exacte de ces corpus est rarement publiée. Un développeur ne peut donc pas savoir directement si son code a servi à entraîner un modèle donné.
+
+		Cette question a plusieurs enjeux. Le premier est juridique : du code publié sous licence (GPL, CC-BY-SA) peut avoir été utilisé sans respect des conditions de la licence. Le deuxième concerne la sécurité : un dépôt qui a contenu des secrets (clés d'API, identifiants) a pu exposer ces secrets au modèle. Le troisième est scientifique : un banc d'essai de génération de code dont les solutions figurent dans les données d'entraînement ne mesure plus la capacité de généralisation du modèle (contamination). Le quatrième est pédagogique : évaluer un exercice de programmation suppose de savoir si sa solution est déjà connue du modèle.
+
+		Le problème relève de l'inférence d'appartenance (\emph{membership inference attack}, MIA) : décider, à partir du comportement d'un modèle, si un échantillon faisait partie de ses données d'entraînement. Le code présente des particularités qui le distinguent du langage naturel (syntaxe contraignante, forte duplication, transformations qui préservent exactement la sémantique), présentées en \cref{sec:ea-code}.
+
+	\subsection{Question de recherche}\label{sec:intro-question}
+		La question de recherche de CodeTrace est la suivante.
+
+		\begin{quote}
+			Peut-on déterminer si un extrait de code donné a fait partie des données d'entraînement d'un LLM, en comparant le comportement du modèle (log-probabilités des tokens, sorties) sur la version authentique et sur des versions perturbées du même code ?
+		\end{quote}
+
+		L'hypothèse sous-jacente, que nous prévoyons de tester, est qu'un modèle qui a vu un extrait pendant son entraînement le traite de façon plus "familière" que des versions sémantiquement équivalentes mais textuellement différentes de cet extrait. L'écart de comportement entre version authentique et versions perturbées serait alors plus grand pour les membres que pour les non-membres.
+
+		Le sujet fixe sept objectifs : (1) curer des jeux de données de code réels et générer des variantes perturbées ; (2) tester l'appartenance en comparant version authentique et versions perturbées ; (3) évaluer plusieurs LLM (le sujet cite GPT-5, Gemini 2.5 Flash, Mistral 24B, LLaMA 3.3 70B et DeepSeek) ; (4) définir des critères de décision robustes, par modèle et par type de code ; (5) visualiser et comparer les méthodes avec des métriques standard ; (6) construire un outil interactif de test ; (7) analyser l'influence de l'architecture des modèles et des caractéristiques du code.
+
+	\subsection{Contributions}\label{sec:intro-contributions}
+		À ce stade du projet, les contributions réalisées sont limitées au cadrage :
+		\begin{itemize}
+			\item une synthèse préliminaire de la littérature sur les MIA appliquées aux LLM et au code (\cref{sec:etat-art}), rédigée à partir des résumés des travaux ;
+			\item un cadre formel et des règles méthodologiques fixées avant toute expérience (\cref{sec:cadre,sec:protocole}), en particulier l'obligation d'une baseline aveugle contre le biais temporel ;
+			\item une infrastructure de travail reproductible : dépôt structuré, liste versionnée des papiers de référence avec script de téléchargement, et génération versionnée de ce rapport.
+		\end{itemize}
+		Aucune donnée, méthode ou résultat expérimental n'est encore disponible.
+
+	\subsection{Organisation du rapport}\label{sec:intro-plan}
+		La \cref{sec:etat-art} présente l'état de l'art. La \cref{sec:cadre} formalise le problème et le modèle de menace. Les \cref{sec:donnees,sec:methodes,sec:protocole} décriront les données, les méthodes et le protocole expérimental. Les \cref{sec:resultats,sec:discussion} présenteront et discuteront les résultats, la \cref{sec:outil} l'outil interactif. La \cref{sec:conclusion} conclut. Les annexes consignent les décisions méthodologiques (\cref{ann:decisions}), les informations de reproductibilité (\cref{ann:repro}) et l'historique des versions (\cref{ann:historique}).

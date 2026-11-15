@@ -1,0 +1,10 @@
+% Sources : synthèse du rapport, notes/journal.md (prochaines étapes du 2026-11-12).
+\section{Conclusion et perspectives}\label{sec:conclusion}
+	Le projet CodeTrace est en phase de cadrage. La question de recherche, le cadre formel et les règles méthodologiques sont fixés. Une synthèse préliminaire de la littérature suggère que les MIA au niveau de l'échantillon sur de grands LLM donnent un signal faible lorsque l'évaluation contrôle le biais de distribution ; cette conclusion reste à confirmer par la lecture détaillée des papiers. Aucune donnée, méthode ni résultat n'est encore disponible.
+
+	Les prochaines étapes, par ordre de priorité, sont les suivantes :
+	\begin{enumerate}
+		\item rédiger une fiche de lecture pour chacun des huit papiers de référence, ce qui permettra de lever les marqueurs "à vérifier" de la \cref{sec:etat-art} ;
+		\item vérifier pour chaque modèle visé si l'API renvoie les log-probabilités du prompt ou seulement celles de la complétion, et à quel coût (\cref{sec:cadre-acces}) ;
+		\item choisir la source des labels membre et non-membre pour le code, entre dates de cutoff des modèles et de commits, et corpus d'entraînement connus (\cref{sec:donnees-labels}).
+	\end{enumerate}

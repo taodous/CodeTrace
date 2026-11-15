@@ -1,0 +1,19 @@
+% Résumé (FR) et abstract (EN). Réécrits à CHAQUE version pour refléter l'état réel du projet.
+% 150 à 250 mots chacun : contexte, question, méthode, résultat principal (ou état d'avancement), portée.
+% Sources : tout le rapport (V1 : CLAUDE.md, notes/etat_de_l_art.md, notes/journal.md).
+\section*{Résumé}
+\addcontentsline{toc}{section}{Résumé}
+Les grands modèles de langage sont entraînés sur de vastes corpus de code public, souvent sans que les auteurs de ce code le sachent ni y consentent. Savoir si un extrait de code donné a servi à l'entraînement d'un modèle intéresse la protection des licences, la détection de fuites de secrets, la contamination des bancs d'essai et l'évaluation pédagogique. Le projet CodeTrace pose la question suivante : peut-on déterminer si un extrait de code a fait partie des données d'entraînement d'un modèle en comparant le comportement de ce modèle (log-probabilités des tokens, sorties générées) sur la version authentique et sur des versions perturbées du même code ?
+
+Ce premier rapport décrit l'état du projet en phase de cadrage. Il présente une synthèse préliminaire de la littérature sur l'inférence d'appartenance appliquée aux modèles de langage et au code, fondée sur les résumés des travaux et non encore sur des fiches de lecture détaillées. Il fixe les notations, le cadre formel et les règles méthodologiques retenues : labels membre et non-membre documentés, baseline aveugle contre le biais temporel, métriques avec intervalles de confiance. Aucune donnée n'a encore été collectée, aucune méthode n'est implémentée et aucun résultat expérimental n'est disponible. Les prochaines étapes sont la lecture détaillée des papiers de référence, la vérification de l'accès aux log-probabilités pour chaque modèle visé et le choix de la source des labels.
+
+\noindent\textbf{Mots-clés :} inférence d'appartenance, données d'entraînement, grands modèles de langage, code source, provenance.
+
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+Large language models are trained on vast corpora of public code, often without the knowledge or consent of its authors. Knowing whether a given code snippet was used to train a model matters for licence enforcement, secret leakage detection, benchmark contamination and educational assessment. The CodeTrace project asks the following question: can we determine whether a code snippet was part of a model's training data by comparing the model's behaviour (token log-probabilities, generated outputs) on the authentic version and on perturbed versions of the same code?
+
+This first report describes the project at the scoping stage. It presents a preliminary synthesis of the literature on membership inference for language models and for code, based on the papers' abstracts rather than on detailed reading notes. It sets the notation, the formal framework and the methodological rules adopted: documented member and non-member labels, a blind baseline against temporal bias, and metrics with confidence intervals. No data has been collected yet, no method is implemented and no experimental result is available. The next steps are a detailed reading of the reference papers, checking log-probability access for each target model, and choosing the source of membership labels.
+
+\noindent\textbf{Keywords:} membership inference, training data, large language models, source code, provenance.
+\newpage

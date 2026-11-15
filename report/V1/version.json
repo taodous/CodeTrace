@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "date": "2026-11-14",
+  "base_commit": "befd2492a1ca1f4a95ca6df8fa596bd99c0cc937",
+  "previous": null,
+  "previous_commit": null,
+  "dirty_sources": [],
+  "sources_changed": [
+    "CLAUDE.md",
+    "data/README.md",
+    "docs/model_access.md",
+    "notes/decisions.md",
+    "notes/etat_de_l_art.md",
+    "notes/journal.md",
+    "notes/related_work.md",
+    "papers/papers.toml"
+  ],
+  "sections_touched": [
+    "00-resume",
+    "01-introduction",
+    "02-etat-de-l-art",
+    "03-cadre",
+    "04-donnees",
+    "06-protocole",
+    "10-conclusion",
+    "annexes/B-reproductibilite",
+    "annexes/C-historique"
+  ]
+}

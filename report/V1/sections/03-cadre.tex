@@ -1,0 +1,30 @@
+% Sources : CLAUDE.md (question de recherche, contraintes d'accès), docs/model_access.md (gabarit vide au 2026-11-14), notes/decisions.md.
+\section{Cadre formel et modèle de menace}\label{sec:cadre}
+	\subsection{Définition du problème}\label{sec:cadre-definition}
+		Soit $M$ un modèle de langage entraîné sur un corpus $D$ inconnu de l'auditeur, et $x$ un extrait de code. La question d'appartenance est de décider si $x \in D$. Une attaque associe à $x$ un score $s(x, M)$, puis décide que $x$ est membre si le score dépasse un seuil :
+		\begin{equation*}
+			\hat{y}(x) = \mathbb{1}\left[ s(x, M) > \tau \right].
+		\end{equation*}
+		Par convention, un score plus élevé indique une appartenance plus probable.
+
+		CodeTrace s'intéresse aux scores qui comparent l'extrait authentique $x$ à un ensemble de versions perturbées $\tilde{x}_1, \dots, \tilde{x}_m$, sémantiquement équivalentes à $x$ mais textuellement différentes. Ces scores prennent la forme générale
+		\begin{equation*}
+			s(x, M) = g\bigl(f(x, M), \{ f(\tilde{x}_j, M) \}_{j=1}^{m}\bigr),
+		\end{equation*}
+		où $f$ mesure la familiarité du modèle avec un texte (par exemple l'opposé de sa perte) et $g$ compare la valeur sur l'original aux valeurs sur les versions perturbées. Les choix de $f$, de $g$ et des perturbations seront précisés en \cref{sec:methodes}.
+
+		Au niveau du jeu de données, la question porte sur un ensemble $X = \{x_1, \dots, x_n\}$ (par exemple les fichiers d'un dépôt). La décision repose alors sur un test statistique appliqué à la distribution des scores de $X$, comparée à celle d'un ensemble de non-membres connus.
+
+		Le seuil $\tau$ n'est pas universel : il dépend du modèle et potentiellement du type de code. Nous évaluerons donc les scores indépendamment du seuil (AUC-ROC) et à des taux de faux positifs fixés (\cref{sec:protocole-metriques}).
+
+	\subsection{Modèle de menace et accès aux modèles}\label{sec:cadre-acces}
+		L'auditeur ne connaît pas $D$ et n'a aucun contrôle sur l'entraînement. Il dispose de l'extrait $x$ et d'un accès en lecture au modèle, dont le niveau varie :
+		\begin{itemize}
+			\item \textbf{boîte blanche} : accès aux poids et donc aux logits de tous les tokens, en entrée comme en sortie (modèles à poids ouverts exécutés localement) ;
+			\item \textbf{boîte grise} : accès par API aux log-probabilités, éventuellement limitées aux tokens générés et aux $k$ tokens les plus probables ;
+			\item \textbf{boîte noire} : accès au seul texte généré.
+		\end{itemize}
+
+		La distinction critique est celle entre log-probabilités du prompt et log-probabilités de la complétion. Les scores de la \cref{sec:ea-mia} demandent les premières. Si une API ne renvoie que les secondes, il faut une méthode fondée sur la complétion du code.
+
+		\afaire{Tableau des modèles visés (GPT-5, Gemini 2.5 Flash, Mistral 24B, LLaMA 3.3 70B, DeepSeek) avec, pour chacun : mode d'accès, fournisseur, log-probabilités du prompt et de la complétion, top-$k$ maximal, coût, date de cutoff annoncée, source et date de vérification. Rien n'est encore vérifié dans docs/model\_access.md.}

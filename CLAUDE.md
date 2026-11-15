@@ -7,12 +7,14 @@ Encadrants : Subhankar Maity, Guilherme Medeiros Machado.
 Le repo n'est qu'un squelette. Rien n'est implémenté :
 - aucun code dans src/ (seulement des `__init__.py` vides), aucun test ;
 - aucun dataset dans data/, aucune expérience dans experiments/, aucun résultat dans results/ ;
-- 8 PDF dans papers/ (liste ci-dessous), mais aucun n'est encore lu ni fiché dans notes/ ;
+- 70 PDF dans papers/ (8 listés ci-dessous + 62 ajoutés le 2026-11-14 depuis
+  docs/etat-de-lart/sources.md, liste complète dans papers/papers.toml), mais aucun n'est encore
+  lu ni fiché dans notes/ ;
 - docs/model_access.md et les fichiers de notes sont des gabarits vides, sauf notes/etat_de_l_art.md
   (synthèse courte de la littérature, rédigée à partir des résumés).
 - Rapport : skill /build-report + scripts/build_report.py (testé dans tests/test_build_report.py).
-  Template ECE dans report/template/. Aucune version (report/V1/) encore générée.
-  Aucune distribution LaTeX installée sur la machine pour l'instant.
+  Template ECE dans report/template/. report/V1/ générée le 2026-11-14 (cadrage, état de l'art
+  préliminaire, aucun résultat). TeX Live 2026 installé (latexmk, biber, latexdiff, chktex).
 
 Ne jamais affirmer qu'un fichier, un résultat ou un papier existe sans l'avoir vérifié dans le repo.
 Mettre à jour cette section quand une brique devient réelle.

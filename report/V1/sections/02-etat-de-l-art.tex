@@ -1,0 +1,59 @@
+% Sources : notes/etat_de_l_art.md (synthèse à partir des résumés, 2026-11-12), papers/papers.toml.
+% Aucune fiche de lecture n'existe encore dans notes/ : aucun chiffre de la littérature n'est cité,
+% et les conclusions des papiers sont marquées \averifier tant qu'elles ne sont pas fichées.
+% Règle : un chiffre d'un papier n'est écrit que si une fiche existe dans notes/ ; sinon \averifier{}.
+\section{État de l'art}\label{sec:etat-art}
+	Cette section s'appuie sur une synthèse préliminaire rédigée à partir des résumés des travaux. Aucun papier n'a encore fait l'objet d'une fiche de lecture détaillée. Nous décrivons donc les méthodes proposées, mais les conclusions empiriques des auteurs sont signalées comme restant à vérifier, et aucun chiffre de la littérature n'est reproduit.
+
+	Nous distinguons trois niveaux de granularité. Au niveau de l'échantillon, on décide si un extrait donné est membre des données d'entraînement : c'est le cadre classique des MIA, aussi appelé détection de données de pré-entraînement (\emph{pretraining data detection}). Au niveau du jeu de données (\emph{dataset inference}), on décide si un ensemble d'extraits (par exemple un dépôt) a été utilisé. Enfin, le traçage actif consiste à marquer son code avant publication pour pouvoir prouver plus tard son utilisation.
+
+	\subsection{Inférence d'appartenance sur les grands modèles de langage}\label{sec:ea-mia}
+		Les premières attaques exploitent la perte du modèle. Un membre tend à avoir une perte (ou une perplexité) plus faible qu'un non-membre. Carlini et al.~\cite{carlini2021} utilisent ce signal pour extraire des données d'entraînement et le normalisent, entre autres, par l'entropie de compression zlib du texte : un texte très compressible est facile à prédire pour tout modèle, ce qui ne prouve pas qu'il a été vu.
+
+		Une autre famille compare la perte du modèle cible à celle d'un modèle de référence entraîné sur des données de distribution proche. Cette calibration est coûteuse et suppose de disposer de données de même distribution, ce qui est souvent irréaliste. Mattern et al.~\cite{mattern2023} proposent de remplacer le modèle de référence par des voisins de l'échantillon : ils génèrent des versions légèrement perturbées de $x$ (remplacement de mots) et comparent la perte sur $x$ à la perte moyenne sur ces voisins. Cette comparaison avec des voisins perturbés est l'idée la plus proche de celle de CodeTrace.
+
+		Shi et al.~\cite{shi2024} proposent Min-K\% Prob, fondé sur l'intuition qu'un texte non vu contient quelques tokens aberrants de faible probabilité : le score est la moyenne des $k\,\%$ log-probabilités les plus faibles de l'extrait. Le même travail introduit le banc d'essai WikiMIA, dont les non-membres sont définis par un critère temporel. Zhang et al.~\cite{zhang2025} proposent Min-K\%++, qui normalise la log-probabilité de chaque token par la moyenne et l'écart-type de la distribution conditionnelle du modèle sur le vocabulaire, en s'appuyant sur l'idée que les échantillons d'entraînement tendent à être des maxima locaux de la distribution apprise. \averifier{Les auteurs présentent cette méthode comme l'état de l'art sans modèle de référence sur WikiMIA et MIMIR.}
+
+		Ces méthodes ont une exigence commune : elles demandent les log-probabilités des tokens de l'extrait fourni en entrée, et même la distribution complète sur le vocabulaire pour Min-K\%++. Cette exigence conditionne les modèles auxquels elles s'appliquent (\cref{sec:ea-boite-noire}).
+
+	\subsection{Limites méthodologiques des évaluations}\label{sec:ea-critique}
+		Plusieurs travaux récents remettent en cause la validité des évaluations de MIA sur les LLM. Ce point conditionne directement notre protocole.
+
+		Duan et al.~\cite{duan2024} évaluent les MIA sur des membres et non-membres tirés de la même distribution (banc d'essai MIMIR, modèles Pythia entraînés sur la Pile). \averifier{Ils concluent que les MIA y font à peine mieux que le hasard, et attribuent une partie des succès rapportés ailleurs à un décalage de distribution, notamment temporel, entre membres et non-membres.} Das et al.~\cite{das2024} construisent des classifieurs \emph{aveugles}, qui n'interrogent pas le modèle. \averifier{Ces baselines aveugles battent les meilleures MIA publiées sur plusieurs bancs d'essai, ce qui indique que ces bancs d'essai séparent les classes par leur distribution plutôt que par l'appartenance.} Meeus et al.~\cite{meeus2024} dressent un bilan allant dans le même sens et proposent des protocoles plus sûrs, comme des partitions aléatoires contrôlées ou des données dont la date d'inclusion est certaine.
+
+		Maini et al.~\cite{maini2024} proposent de passer au niveau du jeu de données : plusieurs scores MIA sont agrégés, puis un test statistique est appliqué à un ensemble suspect. Ce cadre correspond bien au cas d'usage "mon dépôt a-t-il servi à l'entraînement ?".
+
+		Nous en tirons deux règles pour CodeTrace. Une baseline aveugle, qui distingue code ancien et code récent sans interroger le modèle, est obligatoire. Les labels membre et non-membre doivent, autant que possible, provenir d'un corpus d'entraînement connu plutôt que de la seule date de publication (\cref{sec:donnees-labels}).
+
+	\subsection{Travaux spécifiques au code source}\label{sec:ea-code}
+		Al-Kaswan et al.~\cite{alkaswan2024} étudient la mémorisation dans les LLM de code par des attaques d'extraction. \averifier{Ils rapportent que la mémorisation augmente avec la taille du modèle et que les fichiers de données et constantes (\emph{data carriers}) sont plus mémorisés que le code ordinaire.}
+
+		Wan et al.~\cite{wan2024} adaptent les MIA aux modèles de complétion de code en boîte noire, à l'aide de modèles fantômes (\emph{shadow models}). \averifier{L'attaque fonctionne sur des modèles de petite taille mais l'appartenance reste difficile à détecter sur des modèles plus grands comme CodeGen et StarCoder.} Yang et al.~\cite{yang2024} et Zhang et Li~\cite{zhang2023} proposent d'autres MIA pour les modèles de code, respectivement avec un modèle substitut et en boîte noire.
+
+		Jiang et al.~\cite{jiang2025} sont les plus proches de l'approche "authentique contre perturbé" de CodeTrace. Ils génèrent des perturbations du code qui préservent la sémantique (prompts adverses), comparent les complétions obtenues au code réel et entraînent un classifieur sur les caractéristiques qui en résultent. Leur méthode reste centrée sur des modèles de complétion de code.
+
+		Deux travaux trouvés sur le web, non encore lus, exploitent la structure du code. Li et al.~\cite{li2025} retirent avant le calcul du score les tokens imposés par la syntaxe de Python, prévisibles pour tout modèle, et proposent un banc d'essai Python. Yang et al.~\cite{yang2025} étudient l'effet de transformations sémantiquement équivalentes (renommage, reformatage) sur les MIA. \averifier{Le renommage de variables y ferait baisser le succès des attaques}, ce qui montrerait que la perturbation peut servir à la fois d'outil de détection et de moyen d'évasion.
+
+		Le code se distingue du langage naturel sur trois points. Une grande part des tokens est déterminée par la syntaxe. Le code est très dupliqué (forks, code générique, en-têtes de licence), ce qui brouille la frontière entre membre et non-membre. Enfin, des transformations préservent exactement la sémantique (renommage, reformatage, réordonnancement, commentaires) : elles fournissent des voisins au sens de Mattern et al.~\cite{mattern2023} sans recourir à un modèle de langue pour les générer.
+
+	\subsection{Accès boîte noire et API fermées}\label{sec:ea-boite-noire}
+		Les scores des \cref{sec:ea-mia,sec:ea-code} supposent l'accès aux log-probabilités du code fourni en entrée. \averifier{Les API commerciales (OpenAI, Gemini) semblent n'exposer que les log-probabilités des tokens générés, en nombre limité.} Ce point sera vérifié modèle par modèle (\cref{sec:cadre-acces}).
+
+		Plusieurs travaux récents ciblent le cadre où l'on n'observe que du texte. Hallinan et al.~\cite{hallinan2025} donnent un préfixe au modèle, échantillonnent des continuations et mesurent leur recouvrement en n-grammes avec le vrai suffixe. Yi et Li~\cite{yi2026} estiment le comportement local du modèle à partir du seul mot suivant échantillonné. He et al.~\cite{he2025} proposent une attaque qui n'utilise que les tokens générés (\emph{label-only}), fondée sur leur similarité sémantique. Du côté de l'audit d'API, Chauvin et al.~\cite{chauvin2025} utilisent les log-probabilités renvoyées par une API pour détecter un changement du modèle servi. Un article de l'équipe encadrante sur l'audit d'API de LLM boîte noire par les probabilités des tokens, appliqué à la génération de code, se situe à ce croisement ; sa référence exacte reste à obtenir.
+
+		Pour CodeTrace, cela suggère deux protocoles. Pour les modèles à poids ouverts (\emph{open-weights}), les scores fondés sur les log-probabilités du prompt sont utilisables. Pour les modèles fermés, il faudrait des scores fondés sur la complétion : donner un préfixe du code authentique ou perturbé, puis mesurer la fidélité de la suite générée.
+
+	\subsection{Approches proactives : tatouage du code}\label{sec:ea-tatouage}
+		Au lieu d'inférer l'appartenance après coup, on peut marquer le code avant sa publication. CoProtector insère du code mort servant de marque \averifier{(Sun et al., 2022)}. CodeMark~\cite{sun2023} insère des marques imperceptibles par des transformations qui préservent la sémantique. \averifier{L'efficacité de ces marques est contestée par des travaux ultérieurs, et des attaques comme DeCoMa les détectent et les retirent.} Surtout, ces méthodes ne s'appliquent pas au code déjà publié, qui est précisément la cible de CodeTrace.
+
+	\subsection{Positionnement de CodeTrace}\label{sec:ea-positionnement}
+		D'après cette synthèse préliminaire, les MIA au niveau de l'échantillon sur de grands LLM pré-entraînés donneraient un signal faible lorsque l'évaluation est rigoureuse, et une partie des résultats positifs s'expliquerait par un biais de distribution. La littérature récente évolue dans trois directions : le niveau du jeu de données, les méthodes sans log-probabilités pour les API fermées, et l'adaptation des scores à la structure du code.
+
+		CodeTrace vise la lacune suivante :
+		\begin{itemize}
+			\item comparer systématiquement le comportement d'un modèle sur du code authentique et sur des variantes sémantiquement équivalentes, sur des LLM généralistes récents, à poids ouverts et fermés, et non seulement sur des modèles de complétion de code ;
+			\item le faire avec des labels fiables, issus de corpus connus, et contre une baseline aveugle ;
+			\item analyser l'effet du type de code (langage, code générique, fichiers de données) et de l'architecture du modèle ;
+			\item proposer un outil interactif de test.
+		\end{itemize}
+		Ce positionnement sera révisé après la lecture détaillée des papiers de référence.

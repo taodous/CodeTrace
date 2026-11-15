@@ -1,0 +1,17 @@
+% Sources : data/README.md (aucun dataset au 2026-11-14), CLAUDE.md (règles méthodologiques), notes/decisions.md.
+% Toujours documenter comment le label membre / non-membre est obtenu.
+\section{Données}\label{sec:donnees}
+	Aucun jeu de données n'a encore été collecté. Cette section fixe les exigences que les données devront satisfaire.
+
+	\subsection{Sources de code}\label{sec:donnees-sources}
+		\afaire{Corpus utilisés, licences, langages, période couverte, script de reconstruction.}
+	\subsection{Obtention des labels membre et non-membre}\label{sec:donnees-labels}
+		Pour chaque jeu de données, la manière d'obtenir le label sera documentée explicitement. Trois sources sont envisagées : la date de cutoff annoncée du modèle comparée à la date du commit, l'appartenance à un corpus public connu pour avoir servi à l'entraînement (comme The Stack ou la Pile), ou des données dont la date d'inclusion est certaine. Compte tenu des limites rappelées en \cref{sec:ea-critique}, les corpus connus seront préférés à la seule date.
+
+		\afaire{Choix de la source des labels (décision à consigner dans notes/decisions.md).}
+	\subsection{Nettoyage et déduplication}\label{sec:donnees-dedup}
+		\afaire{Filtrage, déduplication exacte et approchée entre membres et non-membres.}
+	\subsection{Contrôle du biais temporel}\label{sec:donnees-biais}
+		Un classifieur qui distingue code ancien et code récent sans interroger le modèle sera entraîné sur les mêmes données que les attaques. Si ce classifieur aveugle atteint une performance comparable à celle des MIA, les données ne permettent pas de conclure sur l'appartenance.
+
+		\afaire{Mise en œuvre et résultats de la baseline aveugle.}

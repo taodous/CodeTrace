@@ -1,4 +1,4 @@
-"""Télécharge les PDF listés dans papers/papers.toml depuis arXiv.
+"""Télécharge les PDF listés dans papers/papers.toml (arXiv, ou champ `url` hors arXiv).
 
 Usage :
     uv run python scripts/download_papers.py          # télécharge les PDF manquants
@@ -24,8 +24,12 @@ MANIFEST = PAPERS_DIR / "papers.toml"
 USER_AGENT = "codetrace-paper-downloader/0.1"
 
 
-def download(arxiv_id: str, dest: Path) -> None:
-    url = f"https://arxiv.org/pdf/{arxiv_id}"
+def pdf_url(paper: dict) -> str:
+    """URL du PDF : champ `url` s'il existe (papier hors arXiv), sinon arXiv."""
+    return paper.get("url") or f"https://arxiv.org/pdf/{paper['arxiv']}"
+
+
+def download(url: str, dest: Path) -> None:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(req, timeout=60) as resp:
         data = resp.read()
@@ -49,7 +53,7 @@ def main() -> int:
         if i > 0:
             time.sleep(3)  # politesse envers arXiv
         try:
-            download(paper["arxiv"], dest)
+            download(pdf_url(paper), dest)
             print(f"[ok]      {paper['file']} ({dest.stat().st_size // 1024} Ko)")
         except Exception as e:  # noqa: BLE001
             failures += 1

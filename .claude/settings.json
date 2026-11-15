@@ -17,5 +17,8 @@
       "Read(./.env)",
       "Read(./.env.*)"
     ]
+  },
+  "enabledPlugins": {
+    "academic-research-skills@academic-research-skills": true
   }
 }

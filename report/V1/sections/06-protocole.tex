@@ -1,0 +1,19 @@
+% Sources : CLAUDE.md (règles méthodologiques, contraintes d'accès), docs/model_access.md (non rempli au 2026-11-14).
+% À venir : experiments/*.yaml, src/codetrace/eval/.
+\section{Protocole expérimental}\label{sec:protocole}
+	Aucune expérience n'a encore été lancée. Les règles ci-dessous sont fixées avant toute expérience.
+
+	\subsection{Modèles évalués}\label{sec:protocole-modeles}
+		Le sujet cite GPT-5, Gemini 2.5 Flash, Mistral 24B, LLaMA 3.3 70B et DeepSeek.
+
+		\afaire{Versions exactes, mode d'accès (local ou fournisseur), date des appels, après vérification de l'accès aux log-probabilités (\cref{sec:cadre-acces}).}
+	\subsection{Métriques et tests statistiques}\label{sec:protocole-metriques}
+		Chaque score sera évalué par l'aire sous la courbe ROC (AUC-ROC) et par le taux de vrais positifs (TPR) à 1\,\% et 5\,\% de faux positifs (FPR). Le régime à faible taux de faux positifs est le plus pertinent pour un audit, où une accusation erronée a un coût élevé. Chaque métrique sera accompagnée d'un intervalle de confiance obtenu par bootstrap. La comparaison de deux méthodes sur les mêmes extraits reposera sur un test explicite (test de Wilcoxon apparié ou test de permutation).
+	\subsection{Baselines}\label{sec:protocole-baselines}
+		La baseline aveugle décrite en \cref{sec:donnees-biais} est obligatoire. Les scores de la littérature (perte, ratio zlib, Min-K\%, Min-K\%++) serviront de points de comparaison pour les scores fondés sur les perturbations.
+
+		\afaire{Implémentation des baselines.}
+	\subsection{Reproductibilité et coût}\label{sec:protocole-repro}
+		Les seeds seront fixées et les configurations versionnées. Chaque expérience produira un dossier daté dans \texttt{results/} contenant une copie de sa configuration. Toutes les réponses d'API seront mises en cache sur disque, avec une clé formée du modèle et d'un hachage du prompt, afin de ne jamais payer deux fois la même requête. Le coût de chaque campagne d'appels sera estimé avant son lancement. Aucun chiffre de ce rapport ne sera recopié à la main : les résultats seront exportés automatiquement depuis \texttt{results/}.
+
+		\afaire{Coût estimé et réel de chaque campagne.}

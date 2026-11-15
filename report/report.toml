@@ -8,6 +8,6 @@ annee = "2026-2027"
 equipe = "Équipe Data \\& IA"
 ville = "Paris"
 
-# Liste des auteurs (Prénom NOM). "À compléter" déclenche un avertissement de `check`.
+# Liste des auteurs (Tao DOUS). "À compléter" déclenche un avertissement de `check`.
 auteurs = ["À compléter"]
 encadrants = ["Subhankar Maity", "Guilherme Medeiros Machado"]
