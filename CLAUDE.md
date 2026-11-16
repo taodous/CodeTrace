@@ -8,8 +8,9 @@ Le repo n'est qu'un squelette. Rien n'est implémenté :
 - aucun code dans src/ (seulement des `__init__.py` vides), aucun test ;
 - aucun dataset dans data/, aucune expérience dans experiments/, aucun résultat dans results/ ;
 - 70 PDF dans papers/ (8 listés ci-dessous + 62 ajoutés le 2026-11-14 depuis
-  docs/etat-de-lart/sources.md, liste complète dans papers/papers.toml), mais aucun n'est encore
-  lu ni fiché dans notes/ ;
+  docs/etat-de-lart/sources.md, liste complète dans papers/papers.toml). 3 fiches dans notes/
+  (maity2026, mattern2023, tong2026). 12 autres papiers lus en lecture ciblée le 2026-11-16 (sans fiche)
+  pour notes/mini_etat_de_l_art_checkpoint.md ;
 - docs/model_access.md et les fichiers de notes sont des gabarits vides, sauf notes/etat_de_l_art.md
   (synthèse courte de la littérature, rédigée à partir des résumés).
 - Rapport : skill /build-report + scripts/build_report.py (testé dans tests/test_build_report.py).
@@ -106,7 +107,7 @@ Ne pas citer de chiffre ou de conclusion d'un papier tant qu'il n'a pas de fiche
 ## Comment travailler avec Claude ici
 - Pour toute nouvelle expérience : passer d'abord en plan mode, valider le protocole, puis coder.
 - Mettre à jour notes/journal.md à la fin de chaque session (/session-end).
-- Plan de travail : todo.md (volet recherche R et volet pratique P menés en parallèle). Cocher les
+- Plan de travail : todo.md (trois étapes séquentielles depuis le meeting du 2026-11-16 : 10 papiers lus, état de l'art + tableau comparatif, Gantt sur Notion). Cocher les
   tâches faites et l'ajuster quand le projet évolue.
 - Nouveau papier : /new-paper <chemin PDF ou lien arXiv>.
 - Nouvelle version du rapport : /build-report (option --dry-run pour voir le plan d'intégration).
