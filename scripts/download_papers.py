@@ -35,6 +35,7 @@ def download(url: str, dest: Path) -> None:
         data = resp.read()
     if not data.startswith(b"%PDF"):
         raise ValueError(f"la réponse de {url} n'est pas un PDF")
+    dest.parent.mkdir(parents=True, exist_ok=True)  # sous-dossier de catégorie
     dest.write_bytes(data)
 
 

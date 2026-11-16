@@ -579,7 +579,17 @@ def cmd_bib(vdir: Path, extra: list[str]) -> int:
     bib = bib_path.read_text(encoding="utf-8") if bib_path.exists() else ""
     present = bib_keys_of(bib)
     papers = tomllib.loads((ROOT / "papers" / "papers.toml").read_text(encoding="utf-8"))["paper"]
-    wanted = {p["file"].split("-")[0]: p["arxiv"] for p in papers}
+    # clé = début du nom de fichier (sans le sous-dossier de catégorie) ; papiers hors arXiv ignorés
+    wanted: dict[str, str] = {}
+    for p in papers:
+        if "arxiv" not in p:
+            print(f"ignoré (hors arXiv, à ajouter à la main) : {p['file']}")
+            continue
+        key = Path(p["file"]).name.split("-")[0]
+        if key in wanted and wanted[key] != p["arxiv"]:
+            print(f"clé en double {key} : {p['arxiv']} ignoré ({wanted[key]} gardé), cle=arxivid")
+            continue
+        wanted[key] = p["arxiv"]
     for item in extra:  # forme cle=arxivid
         key, _, aid = item.partition("=")
         wanted[key] = aid

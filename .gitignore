@@ -7,7 +7,7 @@ data/raw/
 data/processed/
 
 # Papiers (droits d'auteur, poids)
-papers/*.pdf
+papers/**/*.pdf
 
 # Sorties brutes volumineuses : on versionne configs, summary.md et tableaux agrégés
 results/**/*.jsonl

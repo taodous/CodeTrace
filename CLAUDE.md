@@ -19,6 +19,7 @@ Le repo n'est qu'un squelette. Rien n'est implémenté :
 Ne jamais affirmer qu'un fichier, un résultat ou un papier existe sans l'avoir vérifié dans le repo.
 Mettre à jour cette section quand une brique devient réelle.
 
+
 ## Question de recherche
 Peut-on déterminer si un extrait de code donné a fait partie des données d'entraînement
 d'un LLM, en comparant le comportement du modèle (token log-probabilities, sorties)
@@ -33,20 +34,22 @@ sur la version authentique et sur des versions perturbées du même code ?
 6. Construire un outil interactif de test en temps réel.
 7. Analyser l'influence de l'architecture et des caractéristiques du code.
 
-## Littérature (PDF téléchargés dans papers/, pas encore lus ni fichés)
+## Littérature (PDF téléchargés dans papers/<catégorie>/, pas encore lus ni fichés)
+Catégories et liste complète (70 papiers) : papers/README.md. Ci-dessous, les 8 papiers de départ.
 Fondations MIA sur LLM :
-- carlini2021-extracting-training-data.pdf : Carlini et al., arXiv 2012.07805 (scores loss, zlib).
-- mattern2023-neighbourhood-comparison.pdf : Mattern et al., arXiv 2305.18462
+- mia-scores-logprobs/carlini2021-extracting-training-data.pdf : Carlini et al., arXiv 2012.07805 (scores loss, zlib).
+- mia-scores-logprobs/mattern2023-neighbourhood-comparison.pdf : Mattern et al., arXiv 2305.18462
   (comparaison avec des voisins perturbés, le plus proche de l'idée CodeTrace).
-- shi2024-min-k-prob.pdf : Shi et al., arXiv 2310.16789 (Min-K% Prob, WikiMIA).
-- zhang2025-min-k-plus-plus.pdf : Zhang et al., arXiv 2404.02936 (Min-K%++).
-- duan2024-do-mias-work.pdf : Duan et al., arXiv 2402.07841 (biais de distribution temporelle).
+- mia-scores-logprobs/shi2024-min-k-prob.pdf : Shi et al., arXiv 2310.16789 (Min-K% Prob, WikiMIA).
+- mia-scores-logprobs/zhang2025-min-k-plus-plus.pdf : Zhang et al., arXiv 2404.02936 (Min-K%++).
+- mia-evaluation/duan2024-do-mias-work.pdf : Duan et al., arXiv 2402.07841 (biais de distribution temporelle).
 Spécifique au code :
-- wan2024-code-completion-mia.pdf : Wan et al., arXiv 2404.14296 (MIA sur modèles de complétion de code).
-- alkaswan2024-memorisation-code.pdf : Al-Kaswan et al., arXiv 2312.11658 (mémorisation dans les LLM de code).
-- jiang2025-advprompt-mia-code.pdf : Jiang et al., arXiv 2511.15107 (MIA code par prompts perturbés).
+- mia-code/wan2024-code-completion-mia.pdf : Wan et al., arXiv 2404.14296 (MIA sur modèles de complétion de code).
+- memorisation/alkaswan2024-memorisation-code.pdf : Al-Kaswan et al., arXiv 2312.11658 (mémorisation dans les LLM de code).
+- mia-code/jiang2025-advprompt-mia-code.pdf : Jiang et al., arXiv 2511.15107 (MIA code par prompts perturbés).
 Non trouvé : un papier de l'équipe encadrante (Maity et al.) sur l'audit d'API LLM via les
-token probabilities. Référence exacte à obtenir auprès des encadrants.
+token probabilities. Référence exacte à obtenir auprès des encadrants. Trouvé à la place :
+mia-code/maity2026-code-provenance.pdf (arXiv 2611.09177, Min-K% sur code, GPT-5, Gemini 2.5...).
 Ne pas citer de chiffre ou de conclusion d'un papier tant qu'il n'a pas de fiche dans notes/.
 
 ## Règles méthodologiques
@@ -85,7 +88,8 @@ Ne pas citer de chiffre ou de conclusion d'un papier tant qu'il n'a pas de fiche
 - app/ : outil interactif (Streamlit ou Gradio, à choisir)
 - docs/ : documentation technique (model_access.md)
 - notes/ : journal, décisions, related work, fiches de lecture
-- papers/ : PDF des papiers (hors git). La liste fait foi dans papers/papers.toml ;
+- papers/ : PDF des papiers (hors git), rangés par catégorie (papers/<catégorie>/, voir
+  papers/README.md). La liste fait foi dans papers/papers.toml ;
   `uv run python scripts/download_papers.py` les télécharge.
 - scripts/ : utilitaires (téléchargement des papiers...)
 - report/ : rapport LaTeX. report/template/ = template ECE d'origine (jamais modifiée),
@@ -102,6 +106,8 @@ Ne pas citer de chiffre ou de conclusion d'un papier tant qu'il n'a pas de fiche
 ## Comment travailler avec Claude ici
 - Pour toute nouvelle expérience : passer d'abord en plan mode, valider le protocole, puis coder.
 - Mettre à jour notes/journal.md à la fin de chaque session (/session-end).
+- Plan de travail : todo.md (volet recherche R et volet pratique P menés en parallèle). Cocher les
+  tâches faites et l'ajuster quand le projet évolue.
 - Nouveau papier : /new-paper <chemin PDF ou lien arXiv>.
 - Nouvelle version du rapport : /build-report (option --dry-run pour voir le plan d'intégration).
   Commiter les notes et résultats avant : le delta se calcule depuis le commit de la version précédente.
